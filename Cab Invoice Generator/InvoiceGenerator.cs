@@ -118,7 +118,7 @@ namespace Cab_Invoice_Generator
                     totalFare += this.CalculateFare(ride.distance, ride.time);
                 }
             }
-            catch(CabInvoiceException)
+            catch
             {
                 throw new CabInvoiceException(CabInvoiceException.ExceptionType.Null_Rides, "Rides are null");
             }

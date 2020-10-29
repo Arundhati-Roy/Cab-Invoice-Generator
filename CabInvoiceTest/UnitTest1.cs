@@ -100,6 +100,10 @@ namespace CabInvoiceTest
                 Assert.AreEqual(expected, e.Message);
             }
         }
+
+        /// <summary>
+        /// Given multiple rides return invoice summary.
+        /// </summary>
         [Test]
         public void GivenMultipleRides_ReturnInvoiceSummary()
         {
@@ -113,6 +117,29 @@ namespace CabInvoiceTest
 
             //Asserting Values
             Assert.AreEqual(expectedSummary, summary);
+        }
+        /// <summary>
+        /// Given null rides throw exception.
+        /// </summary>
+        [Test]
+        public void GivenNullRides_ThrowException()
+        {
+            //Creating Instance of InvoiceGenerator
+            invoiceGenerator = new InvoiceGenerator(RideType.Normal);
+
+            try
+            {
+                Ride[] rides = {null};
+                //Generating Summary for Rides
+                InvoiceSummary summary = invoiceGenerator.CalculateFare(rides);
+                InvoiceSummary expectedSummary = new InvoiceSummary(2, 30.0);
+            }
+
+            catch (CabInvoiceException e)
+            {
+                //Asserting Values
+                Assert.AreEqual("Rides are null", e.Message);
+            }
         }
     }
 }
