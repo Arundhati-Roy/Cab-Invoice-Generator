@@ -28,7 +28,7 @@ namespace Cab_Invoice_Generator
             bool rideList = this.userRides.ContainsKey(userId);
             try
             {
-                if (rideList)
+                if (!rideList)
                 {
                     List<Ride> list = new List<Ride>();
                     list.AddRange(rides);
